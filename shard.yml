@@ -8,6 +8,6 @@ dependencies:
   selenium:
     github: matthewmcgarvey/selenium.cr
 
-crystal: 1.0.0
+crystal: 1.8.0
 
 license: MIT
