@@ -1,7 +1,7 @@
 require "selenium"
 
 class WebdriverSessionHelper
-  ALLOWED_TYPES = %w(chrome firefox)
+  ALLOWED_BROWSER_TYPES = %w(chrome firefox)
 
   @@session : Selenium::Session | Nil
   @@driver  : Selenium::Driver | Nil
@@ -38,7 +38,7 @@ class WebdriverSessionHelper
 
   def self.browser_type
     type = ENV.fetch("RUN_ON", "firefox")
-    raise "Invalid value for browser_type: #{type} - Allowed values #{ALLOWED_TYPES}" unless ALLOWED_TYPES.includes? type
+    raise "Invalid value for browser_type: #{type} - Allowed values #{ALLOWED_BROWSER_TYPES}" unless ALLOWED_BROWSER_TYPES.includes? type
     type
   end
 
