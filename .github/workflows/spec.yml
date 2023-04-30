@@ -27,12 +27,4 @@ jobs:
           CI: true
           RUN_ON: firefox
         run: |
-          crystal spec --error-trace
-          crystal tool format --check
-          crystal docs
-      - name: Publish docs to GitHub Pages
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
+          crystal spec --error-trace --progress
