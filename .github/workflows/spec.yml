@@ -1,5 +1,9 @@
 name: Crystal Specs
-on: [push]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    types: [opened, synchronize]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -9,7 +13,7 @@ jobs:
         run: |
           sudo apt-get -y install chromium-chromedriver
       - name: Install Crystal
-        uses: oprypin/install-crystal@v1
+        uses: crystal-lang/install-crystal@v1
         with:
           crystal: latest
       - name: Checkout repository
