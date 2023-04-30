@@ -37,7 +37,7 @@ class WebdriverSessionHelper
   end
 
   def self.browser_type
-    type = ENV.fetch("RUN_ON", "firefox")
+    type = ENV.fetch("RUN_ON", "chrome")
     raise "Invalid value for browser_type: #{type} - Allowed values #{ALLOWED_BROWSER_TYPES}" unless ALLOWED_BROWSER_TYPES.includes? type
     type
   end

@@ -22,8 +22,11 @@ jobs:
         run: |
           shards install
       - name: Run specs
+        env:
+          CI: true
+          RUN_ON: chrome
         run: |
-          crystal spec
+          crystal spec --error-trace
           crystal tool format --check
           crystal docs
       - name: Publish docs to GitHub Pages
