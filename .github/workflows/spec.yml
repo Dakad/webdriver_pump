@@ -5,13 +5,14 @@ on:
   pull_request:
     types: [opened, synchronize]
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Install required apt packages
-        run: |
-          sudo apt-get -y install chromium-chromedriver
+      - name: Install driver for Firefox
+        uses: browser-actions/setup-geckodriver@latest
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Install Crystal
         uses: crystal-lang/install-crystal@v1
         with:
@@ -24,7 +25,7 @@ jobs:
       - name: Run specs
         env:
           CI: true
-          RUN_ON: chrome
+          RUN_ON: firefox
         run: |
           crystal spec --error-trace
           crystal tool format --check
