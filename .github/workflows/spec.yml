@@ -5,13 +5,14 @@ on:
   pull_request:
     types: [opened, synchronize]
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Install required apt packages
-        run: |
-          sudo apt-get -y install chromium-chromedriver
+      - name: Install driver for Firefox
+        uses: browser-actions/setup-geckodriver@latest
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Install Crystal
         uses: crystal-lang/install-crystal@v1
         with:
@@ -22,13 +23,8 @@ jobs:
         run: |
           shards install
       - name: Run specs
+        env:
+          CI: true
+          RUN_ON: firefox
         run: |
-          crystal spec
-          crystal tool format --check
-          crystal docs
-      - name: Publish docs to GitHub Pages
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
+          crystal spec --error-trace --progress
