@@ -4,7 +4,7 @@ class WebdriverSessionHelper
   ALLOWED_BROWSER_TYPES = %w(chrome firefox)
 
   @@session : Selenium::Session | Nil
-  @@driver  : Selenium::Driver | Nil
+  @@driver : Selenium::Driver | Nil
 
   def self.base_url
     "https://bwilczek.github.io/watir_pump_tutorial"
@@ -31,7 +31,7 @@ class WebdriverSessionHelper
                    Selenium::Driver.for(:chrome, service: driver_service)
                  when "firefox"
                    driver_path = `which geckodriver`.chomp
-                   driver_service = Selenium::Service.firefox(driver_path:  driver_path)
+                   driver_service = Selenium::Service.firefox(driver_path: driver_path)
                    Selenium::Driver.for(:firefox, service: driver_service)
                  end
   end

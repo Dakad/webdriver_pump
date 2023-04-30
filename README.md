@@ -11,7 +11,7 @@ It's a crystal port of ruby's [watir_pump](https://github.com/bwilczek/watir_pum
 ```yaml
 dependencies:
   webdriver_pump:
-    github: bwilczek/webdriver_pump
+    github: Dakad/webdriver_pump
 ```
 2. Run `shards install`
 
