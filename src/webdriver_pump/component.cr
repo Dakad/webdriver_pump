@@ -34,6 +34,13 @@ module WebdriverPump
       def {{name.id}}(*args)
         element = locate_element({{params[:locator]}})
 
+        {% if params[:attribute] %}
+          # Arbitrary choice to always try to get the dynamic prop. value first
+          attr = element.property {{params[:attribute]}}
+          attr ||= element.attribute {{params[:attribute]}}
+          return attr
+        {% end %}
+
         {% if params[:class] %}
           element = {{params[:class]}}.new(session, element)
         {% end %}
@@ -49,6 +56,14 @@ module WebdriverPump
     macro elements(name, params)
       def {{name.id}}(*args)
         elements = locate_elements({{params[:locator]}})
+
+        {% if params[:attribute] %}
+          return elements.map do |element|
+            # Arbitrary choice to always try to get the dynamic prop. value first
+            attr = element.property {{params[:attribute]}}
+            attr ||= element.attribute {{params[:attribute]}}
+          end
+        {% end %}
 
         {% if params[:class] %}
           elements = elements.map do |element|
