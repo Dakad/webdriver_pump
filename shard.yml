@@ -1,8 +1,9 @@
 name: webdriver_pump
-version: 0.4.1
+version: 1.2.0
 
 authors:
   - Bartek Wilczek <bwilczek@gmail.com>
+  - Dakad
 
 dependencies:
   selenium:
