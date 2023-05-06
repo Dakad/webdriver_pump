@@ -3,11 +3,12 @@ version: 1.2.0
 
 authors:
   - Bartek Wilczek <bwilczek@gmail.com>
-  - Dakad
 
 dependencies:
   selenium:
-    github: matthewmcgarvey/selenium.cr
+    github: dakad/selenium.cr
+    branch: main
+    # path: /mnt/Data/Workspace/lab/__forks/selenium.cr
 
 crystal: 1.8.0
 

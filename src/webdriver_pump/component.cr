@@ -38,7 +38,7 @@ module WebdriverPump
           # Arbitrary choice to always try to get the dynamic prop. value first
           attr = element.property {{params[:attribute]}}
           attr ||= element.attribute {{params[:attribute]}}
-          return attr
+          return attr.as String
         {% end %}
 
         {% if params[:class] %}
@@ -62,6 +62,7 @@ module WebdriverPump
             # Arbitrary choice to always try to get the dynamic prop. value first
             attr = element.property {{params[:attribute]}}
             attr ||= element.attribute {{params[:attribute]}}
+            attr.as String
           end
         {% end %}
 
